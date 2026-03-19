@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -457,68 +458,53 @@
     return blocks;
   }
 
-    const blocks = [];
-
-    // Aggiungi riscaldamento
-    blocks.push({
-      label: "Riscaldamento",
-      seconds: WARMUP_MIN * 60,
-      speed: WARMUP_SPEED,
-      incline: WARMUP_INCL,
-      type: "warmup"
-    });
-
-    // Blocchi centrali specifici per settimana/allenamento
-    const key = week + session;
-
-    if (key === "W1A1") {
-      for (let i = 0; i < 6; i++) {
-        blocks.push(
-          { label: "Corsa", seconds: 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
-          { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" }
-        );
-      }
-    } else if (key === "W1A2") {
-      for (let i = 0; i < 6; i++) {
-        blocks.push(
-          { label: "Corsa", seconds: 90, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
-          { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" }
-        );
-      }
-    } else {
-      // Placeholder per settimane successive:
-      // Metto un semplice 20' corsa continua come base (da adattare).
-      blocks.push({
-        label: "Corsa continua",
-        seconds: 20 * 60,
-        speed: RUN_SPEED,
-        incline: BASE_INCL,
-        type: "run"
-      });
-    }
-
-    // Aggiungi defaticamento
-    blocks.push({
-      label: "Defaticamento",
-      seconds: COOLDOWN_MIN * 60,
-      speed: COOLDOWN_SPEED,
-      incline: COOLDOWN_INCL,
-      type: "cooldown"
-    });
-
-    return blocks;
-  }
-
-  function describeBlockPattern(week, session) {
+    function describeBlockPattern(week, session) {
     const key = week + session;
     if (key === "W1A1") {
       return "5' warmup · (1' corsa / 2' camminata) × 6 · 5' defaticamento";
     } else if (key === "W1A2") {
+      return "5' warmup · (1' corsa / 2' camminata) × 7 · 5' defaticamento";
+    } else if (key === "W2A1") {
       return "5' warmup · (1'30\" corsa / 2' camminata) × 6 · 5' defaticamento";
+    } else if (key === "W2A2") {
+      return "5' warmup · (1'30\" corsa / 2' camminata) × 7 · 5' defaticamento";
+    } else if (key === "W3A1") {
+      return "5' warmup · (2' corsa / 2' camminata) × 6 · 5' defaticamento";
+    } else if (key === "W3A2") {
+      return "5' warmup · (3' corsa / 2' camminata) × 5 · 5' defaticamento";
+    } else if (key === "W4A1") {
+      return "5' warmup · (4' corsa / 2' camminata) × 4 · 5' defaticamento";
+    } else if (key === "W4A2") {
+      return "5' warmup · (5' corsa / 2' camminata) × 4 · 5' defaticamento";
+    } else if (key === "W5A1") {
+      return "5' warmup · (6' corsa / 2' camminata) × 3 · 5' defaticamento";
+    } else if (key === "W5A2") {
+      return "5' warmup · (8' corsa / 2' camminata) × 3 · 5' defaticamento";
+    } else if (key === "W6A1") {
+      return "5' warmup · [6' corsa / 2' camminata] × 3 · 5' defaticamento";
+    } else if (key === "W6A2") {
+      return "5' warmup · 10' corsa + 2' camminata + 10' corsa · 5' defaticamento";
+    } else if (key === "W7A1") {
+      return "5' warmup · 12' corsa + 2' camminata + 12' corsa · 5' defaticamento";
+    } else if (key === "W7A2") {
+      return "5' warmup · 20' corsa continua · 5' defaticamento";
+    } else if (key === "W8A1") {
+      return "5' warmup · 22' corsa continua · 5' defaticamento";
+    } else if (key === "W8A2") {
+      return "5' warmup · 25' corsa continua · 5' defaticamento";
+    } else if (key === "W9A1") {
+      return "5' warmup · 28' corsa continua · 5' defaticamento";
+    } else if (key === "W9A2") {
+      return "5' warmup · corsa verso 4 km · 5' defaticamento";
+    } else if (key === "W10A1") {
+      return "5' warmup · corsa verso 4.5 km · 5' defaticamento";
+    } else if (key === "W10A2") {
+      return "5' warmup · corsa verso 5 km · 5' defaticamento";
     } else {
       return "5' warmup · corsa continua · 5' defaticamento";
     }
   }
+
 
   // Stato timer
   let currentWorkout = [];
