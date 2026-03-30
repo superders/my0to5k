@@ -307,7 +307,7 @@
     function buildWorkout(week, session) {
       const blocks = [];
 
-      // Aggiungi riscaldamento (uguale per tutti)
+      // Riscaldamento uguale per tutti
       blocks.push({
         label: "Riscaldamento",
         seconds: WARMUP_MIN * 60,
@@ -370,7 +370,7 @@
           );
         }
 
-        // WEEK 3
+        // WEEK 3 – transizione
       } else if (key === "W3A1") {
         // (2' Corsa + 2' Camminata) × 6
         for (let i = 0; i < 6; i++) {
@@ -380,8 +380,8 @@
           );
         }
       } else if (key === "W3A2") {
-        // (3' Corsa + 2' Camminata) × 5
-        for (let i = 0; i < 5; i++) {
+        // (3' Corsa + 2' Camminata) × 4
+        for (let i = 0; i < 4; i++) {
           blocks.push(
             { label: "Corsa", seconds: 180, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
             { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" }
@@ -396,7 +396,7 @@
           );
         }
 
-        // WEEK 4
+        // WEEK 4 – più corsa
       } else if (key === "W4A1") {
         // (4' Corsa + 2' Camminata) × 4
         for (let i = 0; i < 4; i++) {
@@ -406,10 +406,10 @@
           );
         }
       } else if (key === "W4A2") {
-        // (5' Corsa + 2' Camminata) × 4
-        for (let i = 0; i < 4; i++) {
+        // (6' Corsa + 2' Camminata) × 3
+        for (let i = 0; i < 3; i++) {
           blocks.push(
-            { label: "Corsa", seconds: 300, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
+            { label: "Corsa", seconds: 360, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
             { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" }
           );
         }
@@ -422,7 +422,7 @@
           );
         }
 
-        // WEEK 5
+        // WEEK 5 – primi 20' totali
       } else if (key === "W5A1") {
         // (6' Corsa + 2' Camminata) × 3
         for (let i = 0; i < 3; i++) {
@@ -432,39 +432,13 @@
           );
         }
       } else if (key === "W5A2") {
-        // (8' Corsa + 2' Camminata) × 3
-        for (let i = 0; i < 3; i++) {
-          blocks.push(
-            { label: "Corsa", seconds: 480, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
-            { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" }
-          );
-        }
-      } else if (key === "W5A3") {
-        // Opzionale: (5' Corsa + 2' Camminata) × 3
-        for (let i = 0; i < 3; i++) {
-          blocks.push(
-            { label: "Corsa", seconds: 300, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
-            { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" }
-          );
-        }
-
-        // WEEK 6
-      } else if (key === "W6A1") {
-        // 6' Corsa (1%) + 2' Camminata (2%) × 3
-        for (let i = 0; i < 3; i++) {
-          blocks.push(
-            { label: "Corsa", seconds: 360, speed: RUN_SPEED, incline: 1, type: "run" },
-            { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: 2, type: "walk" }
-          );
-        }
-      } else if (key === "W6A2") {
         // 10' Corsa + 2' Camminata + 10' Corsa
         blocks.push(
           { label: "Corsa", seconds: 600, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
           { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" },
           { label: "Corsa", seconds: 600, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
         );
-      } else if (key === "W6A3") {
+      } else if (key === "W5A3") {
         // Opzionale: 8' Corsa + 2' Camminata + 8' Corsa
         blocks.push(
           { label: "Corsa", seconds: 480, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
@@ -472,7 +446,26 @@
           { label: "Corsa", seconds: 480, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
         );
 
-        // WEEK 7
+        // WEEK 6 – 20' continua
+      } else if (key === "W6A1") {
+        // 10' Corsa + 2' Camminata + 10' Corsa
+        blocks.push(
+          { label: "Corsa", seconds: 600, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
+          { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" },
+          { label: "Corsa", seconds: 600, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
+        );
+      } else if (key === "W6A2") {
+        // 20' Corsa continua
+        blocks.push(
+          { label: "Corsa continua", seconds: 20 * 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
+        );
+      } else if (key === "W6A3") {
+        // Opzionale: 15' Corsa continua
+        blocks.push(
+          { label: "Corsa continua", seconds: 15 * 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
+        );
+
+        // WEEK 7 – verso 25'
       } else if (key === "W7A1") {
         // 12' Corsa + 2' Camminata + 12' Corsa
         blocks.push(
@@ -481,65 +474,67 @@
           { label: "Corsa", seconds: 720, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
         );
       } else if (key === "W7A2") {
-        // 20' Corsa continua
+        // 25' Corsa continua
         blocks.push(
-          { label: "Corsa continua", seconds: 20 * 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
+          { label: "Corsa continua", seconds: 25 * 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
         );
       } else if (key === "W7A3") {
-        // Opzionale: 15' Corsa continua
+        // Opzionale: 18–20' Corsa continua (uso 18')
         blocks.push(
-          { label: "Corsa continua", seconds: 15 * 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
+          { label: "Corsa continua", seconds: 18 * 60, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
         );
 
-        // WEEK 8
+        // WEEK 8 – 30'
       } else if (key === "W8A1") {
-        // 22' Corsa continua, pendenza 1.5%
+        // 15' Corsa + 2' Camminata + 10' Corsa
         blocks.push(
-          { label: "Corsa continua", seconds: 22 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+          { label: "Corsa", seconds: 900, speed: RUN_SPEED, incline: BASE_INCL, type: "run" },
+          { label: "Camminata", seconds: 120, speed: WALK_SPEED, incline: BASE_INCL, type: "walk" },
+          { label: "Corsa", seconds: 600, speed: RUN_SPEED, incline: BASE_INCL, type: "run" }
         );
       } else if (key === "W8A2") {
+        // 30' Corsa continua
+        blocks.push(
+          { label: "Corsa continua", seconds: 30 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+        );
+      } else if (key === "W8A3") {
+        // Opzionale: 20–22' Corsa continua (uso 21')
+        blocks.push(
+          { label: "Corsa continua", seconds: 21 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+        );
+
+        // WEEK 9 – 35'
+      } else if (key === "W9A1") {
+        // 20' Corsa continua
+        blocks.push(
+          { label: "Corsa continua", seconds: 20 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+        );
+      } else if (key === "W9A2") {
+        // 35' Corsa continua
+        blocks.push(
+          { label: "Corsa continua", seconds: 35 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+        );
+      } else if (key === "W9A3") {
+        // Opzionale: 22–25' Corsa continua (uso 23')
+        blocks.push(
+          { label: "Corsa continua", seconds: 23 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+        );
+
+        // WEEK 10 – 40'
+      } else if (key === "W10A1") {
         // 25' Corsa continua
         blocks.push(
           { label: "Corsa continua", seconds: 25 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
         );
-      } else if (key === "W8A3") {
-        // Opzionale: 18' Corsa continua
-        blocks.push(
-          { label: "Corsa continua", seconds: 18 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
-        );
-
-        // WEEK 9
-      } else if (key === "W9A1") {
-        // 28' Corsa continua
-        blocks.push(
-          { label: "Corsa continua", seconds: 28 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
-        );
-      } else if (key === "W9A2") {
-        // Corsa verso 4 km (~32')
-        blocks.push(
-          { label: "Corsa verso 4 km", seconds: 32 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
-        );
-      } else if (key === "W9A3") {
-        // Opzionale: 22' Corsa continua
-        blocks.push(
-          { label: "Corsa continua", seconds: 22 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
-        );
-
-        // WEEK 10
-      } else if (key === "W10A1") {
-        // Corsa verso 4.5 km (~36')
-        blocks.push(
-          { label: "Corsa verso 4.5 km", seconds: 36 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
-        );
       } else if (key === "W10A2") {
-        // Corsa verso 5 km (~40')
+        // 40' Corsa continua (allenamento target)
         blocks.push(
-          { label: "Corsa verso 5 km", seconds: 40 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+          { label: "Corsa continua", seconds: 40 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
         );
       } else if (key === "W10A3") {
-        // Opzionale: 25' Corsa continua
+        // Opzionale: 20' Corsa facile
         blocks.push(
-          { label: "Corsa continua", seconds: 25 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
+          { label: "Corsa continua", seconds: 20 * 60, speed: RUN_SPEED, incline: 1.5, type: "run" }
         );
 
       } else {
@@ -553,7 +548,7 @@
         });
       }
 
-      // Defaticamento
+      // Defaticamento uguale per tutti
       blocks.push({
         label: "Defaticamento",
         seconds: COOLDOWN_MIN * 60,
@@ -588,7 +583,7 @@
       } else if (key === "W3A1") {
         return "5' warmup · (2' corsa / 2' camminata) × 6 · 5' defaticamento";
       } else if (key === "W3A2") {
-        return "5' warmup · (3' corsa / 2' camminata) × 5 · 5' defaticamento";
+        return "5' warmup · (3' corsa / 2' camminata) × 4 · 5' defaticamento";
       } else if (key === "W3A3") {
         return "5' warmup · (2' corsa / 2' camminata) × 4 · 5' defaticamento";
 
@@ -596,7 +591,7 @@
       } else if (key === "W4A1") {
         return "5' warmup · (4' corsa / 2' camminata) × 4 · 5' defaticamento";
       } else if (key === "W4A2") {
-        return "5' warmup · (5' corsa / 2' camminata) × 4 · 5' defaticamento";
+        return "5' warmup · (6' corsa / 2' camminata) × 3 · 5' defaticamento";
       } else if (key === "W4A3") {
         return "5' warmup · (3' corsa / 2' camminata) × 3 · 5' defaticamento";
 
@@ -604,54 +599,55 @@
       } else if (key === "W5A1") {
         return "5' warmup · (6' corsa / 2' camminata) × 3 · 5' defaticamento";
       } else if (key === "W5A2") {
-        return "5' warmup · (8' corsa / 2' camminata) × 3 · 5' defaticamento";
+        return "5' warmup · 10' corsa + 2' camminata + 10' corsa · 5' defaticamento";
       } else if (key === "W5A3") {
-        return "5' warmup · (5' corsa / 2' camminata) × 3 · 5' defaticamento";
+        return "5' warmup · 8' corsa + 2' camminata + 8' corsa · 5' defaticamento";
 
         // Week 6
       } else if (key === "W6A1") {
-        return "5' warmup · [6' corsa / 2' camminata] × 3 · 5' defaticamento";
-      } else if (key === "W6A2") {
         return "5' warmup · 10' corsa + 2' camminata + 10' corsa · 5' defaticamento";
+      } else if (key === "W6A2") {
+        return "5' warmup · 20' corsa continua · 5' defaticamento";
       } else if (key === "W6A3") {
-        return "5' warmup · 8' corsa + 2' camminata + 8' corsa · 5' defaticamento";
+        return "5' warmup · 15' corsa continua · 5' defaticamento";
 
         // Week 7
       } else if (key === "W7A1") {
         return "5' warmup · 12' corsa + 2' camminata + 12' corsa · 5' defaticamento";
       } else if (key === "W7A2") {
-        return "5' warmup · 20' corsa continua · 5' defaticamento";
+        return "5' warmup · 25' corsa continua · 5' defaticamento";
       } else if (key === "W7A3") {
-        return "5' warmup · 15' corsa continua · 5' defaticamento";
+        return "5' warmup · 18' corsa continua · 5' defaticamento";
 
         // Week 8
       } else if (key === "W8A1") {
-        return "5' warmup · 22' corsa continua · 5' defaticamento";
+        return "5' warmup · 15' corsa + 2' camminata + 10' corsa · 5' defaticamento";
       } else if (key === "W8A2") {
-        return "5' warmup · 25' corsa continua · 5' defaticamento";
+        return "5' warmup · 30' corsa continua · 5' defaticamento";
       } else if (key === "W8A3") {
-        return "5' warmup · 18' corsa continua · 5' defaticamento";
+        return "5' warmup · 21' corsa continua · 5' defaticamento";
 
         // Week 9
       } else if (key === "W9A1") {
-        return "5' warmup · 28' corsa continua · 5' defaticamento";
+        return "5' warmup · 20' corsa continua · 5' defaticamento";
       } else if (key === "W9A2") {
-        return "5' warmup · corsa verso 4 km · 5' defaticamento";
+        return "5' warmup · 35' corsa continua · 5' defaticamento";
       } else if (key === "W9A3") {
-        return "5' warmup · 22' corsa continua · 5' defaticamento";
+        return "5' warmup · 23' corsa continua · 5' defaticamento";
 
         // Week 10
       } else if (key === "W10A1") {
-        return "5' warmup · corsa verso 4.5 km · 5' defaticamento";
-      } else if (key === "W10A2") {
-        return "5' warmup · corsa verso 5 km · 5' defaticamento";
-      } else if (key === "W10A3") {
         return "5' warmup · 25' corsa continua · 5' defaticamento";
+      } else if (key === "W10A2") {
+        return "5' warmup · 40' corsa continua · 5' defaticamento";
+      } else if (key === "W10A3") {
+        return "5' warmup · 20' corsa continua · 5' defaticamento";
 
       } else {
         return "5' warmup · corsa continua · 5' defaticamento";
       }
     }
+
 
     // Stato timer
     let currentWorkout = [];
